@@ -11,6 +11,7 @@ Modified 2022-10-05
 #include <inttypes.h>
 #include <assert.h>
 #include <string.h>
+#include <wchar.h>
 #include <stdarg.h>
 #include <time.h>
 
