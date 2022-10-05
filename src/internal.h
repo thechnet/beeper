@@ -1,6 +1,6 @@
 /*
 internal.h - Beeper
-Modified 2022-10-03
+Modified 2022-10-05
 */
 
 #ifndef BP_INTERNAL_H
@@ -15,6 +15,14 @@ Modified 2022-10-03
 
 #define BP_SIZE_RECIPIENTS ((size_t)4)
 #define BP_SIZE_THEMES ((size_t)8)
+#define BP_FORMAT_YEAR "%04d-"
+#define BP_FORMAT_YEAR_WIDE L"" BP_FORMAT_YEAR
+#define BP_FORMAT_MONTH_AND_DAY "%02d-%02d "
+#define BP_FORMAT_MONTH_AND_DAY_WIDE L"" BP_FORMAT_MONTH_AND_DAY
+#define BP_FORMAT_HOUR_AND_MINUTE "%02d:%02d"
+#define BP_FORMAT_HOUR_AND_MINUTE_WIDE L"" BP_FORMAT_HOUR_AND_MINUTE
+#define BP_FORMAT_SECOND ":%02d"
+#define BP_FORMAT_SECOND_WIDE L"" BP_FORMAT_SECOND
 #define BP_FORMAT_ID "(%s) "
 #define BP_FORMAT_ID_WIDE L"(%hs) "
 #define BP_FORMAT_STYLE_NAME "[%s] "

@@ -1,6 +1,6 @@
 /*
 shared.h - Beeper
-Modified 2022-10-03
+Modified 2022-10-05
 */
 
 #ifndef BP_SHARED_H
@@ -58,6 +58,10 @@ typedef struct bp_style_ {
   bool blinking;
   bool negative;
   bool strikethrough;
+  bool show_date;
+  bool hide_year;
+  bool show_time;
+  bool hide_second;
   bool hide_identifier;
   bool show_style;
   bool hide_origin;

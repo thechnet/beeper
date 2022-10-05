@@ -1,6 +1,6 @@
 /*
 beeper.c - Beeper
-Modified 2022-10-03
+Modified 2022-10-05
 */
 
 /* Interface headers. */
@@ -12,6 +12,7 @@ Modified 2022-10-03
 #include <assert.h>
 #include <string.h>
 #include <stdarg.h>
+#include <time.h>
 
 /*
 *** Interface.
@@ -459,6 +460,10 @@ static void bp_print_message_prelude(bp_recipient recipient, bp_theme theme, cha
   
   bp_style style = theme.style;
   
+  /* Get time. */
+  time_t timestamp = time(NULL);
+  struct tm *t = localtime(&timestamp);
+  
   /* Print message prelude. */
   if (recipient.wide) {
     if (recipient.formatted)
@@ -475,6 +480,17 @@ static void bp_print_message_prelude(bp_recipient recipient, bp_theme theme, cha
         style.negative ? 7 : 27,
         style.strikethrough ? 9 : 29
       );
+    if (style.show_date) {
+      if (!style.hide_year)
+        fwprintf(recipient.stream, BP_FORMAT_YEAR_WIDE, 1900+t->tm_year);
+      fwprintf(recipient.stream, BP_FORMAT_MONTH_AND_DAY_WIDE, 1+t->tm_mon, t->tm_mday);
+    }
+    if (style.show_time) {
+      fwprintf(recipient.stream, BP_FORMAT_HOUR_AND_MINUTE_WIDE, t->tm_hour, t->tm_min);
+      if (!style.hide_second)
+        fwprintf(recipient.stream, BP_FORMAT_SECOND_WIDE, t->tm_sec);
+      fputwc(L' ', recipient.stream);
+    }
     if (!style.hide_identifier)
       fwprintf(recipient.stream, BP_FORMAT_ID_WIDE, beeper->identifier);
     if (style.show_style)
@@ -496,6 +512,17 @@ static void bp_print_message_prelude(bp_recipient recipient, bp_theme theme, cha
         style.negative ? 7 : 27,
         style.strikethrough ? 9 : 29
       );
+    if (style.show_date) {
+      if (!style.hide_year)
+        fprintf(recipient.stream, BP_FORMAT_YEAR, 1900+t->tm_year);
+      fprintf(recipient.stream, BP_FORMAT_MONTH_AND_DAY, 1+t->tm_mon, t->tm_mday);
+    }
+    if (style.show_time) {
+      fprintf(recipient.stream, BP_FORMAT_HOUR_AND_MINUTE, t->tm_hour, t->tm_min);
+      if (!style.hide_second)
+        fprintf(recipient.stream, BP_FORMAT_SECOND, t->tm_sec);
+      fputc(' ', recipient.stream);
+    }
     if (!style.hide_identifier)
       fprintf(recipient.stream, BP_FORMAT_ID, beeper->identifier);
     if (style.show_style)
