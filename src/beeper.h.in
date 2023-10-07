@@ -23,10 +23,10 @@ Modified 2023-10-07
 
 /* Macros for checking runtime values. */
 #define beep_i(i_) beep(debug, #i_ " = %lld", (long long int)(i_))
-#define beep_f(f_) beep(debug, #f_ " = %f", (f_))
+#define beep_f(f_) beep(debug, #f_ " = %.*Lf", BP_BEEP_F_PRECISION, (long double)(f_))
 #define beep_p(p_) beep(debug, #p_ " = %p", ((void*)(p_)))
 #define beep_c(c_) beep(debug, #c_ " = '%c'", (c_))
-#define beep_s(s_) beep(debug, #s_ " = \"%s\"", (s_))
-#define beep_ws(ws_) beep(debug, #ws_ " = \"%ls\"", (ws_))
+#define beep_hs(hs_) beep(debug, #hs_ " = \"%hs\"", (hs_))
+#define beep_ls(ls_) beep(debug, #ls_ " = \"%ls\"", (ls_))
 
 #endif /* !BEEPER */

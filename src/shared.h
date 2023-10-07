@@ -12,9 +12,10 @@ Modified 2023-10-07
 #include <stdint.h>
 
 /*
-*** Errors.
+*** Constants.
 */
 
+#define BP_BEEP_F_PRECISION 6
 #define BP_SUCCESS ((int)0) /* No problems were encountered. */
 #define BP_INACTIVE ((int)1) /* No active beeper is set. */
 #define BP_INVALID_1ST ((int)-2) /* The first argument was invalid. */
