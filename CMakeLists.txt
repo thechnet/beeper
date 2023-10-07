@@ -12,7 +12,7 @@ if(NOT CMAKE_BUILD_TYPE)
   message(STATUS "Build type not specified, using Debug.")
 endif()
 
-option(WD_32BIT "32-bit mode." OFF)
+option(BP_32BIT "32-bit mode." OFF)
 
 add_library(
   # Output.
@@ -23,7 +23,7 @@ add_library(
   src/beeper.c
 )
 
-if(WD_32BIT)
+if(BP_32BIT)
   set_target_properties(beeper PROPERTIES COMPILE_OPTIONS "-m32" LINK_FLAGS "-m32")
 endif()
 
