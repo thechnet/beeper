@@ -67,7 +67,7 @@ Now we can start logging messages. For example, we can log a warning as follows:
 beep(/* style: */ warn, "Problematic integer: %d", 45)
 ```
 
-The `beep` macro accepts a message style (see [Styles](#styles)), followed by a format string and the values to go alongside it (Beeper wraps around the `printf` family of functions).
+The `beep` macro accepts a message style (see [Styles](#styles)), followed by a (literal!) format string and the values to go alongside it (Beeper wraps around the `printf` family of functions).
 
 For more control, there are also the `beep_with` (to explicitly select an instance for this specific message), `beep_at` (to supply a custom origin file and line), and `beep_with_at` (both) macros.
 

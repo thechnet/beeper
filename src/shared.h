@@ -1,6 +1,6 @@
 /*
 shared.h - Beeper
-Modified 2022-10-05
+Modified 2023-10-07
 */
 
 #ifndef BP_SHARED_H
@@ -85,6 +85,6 @@ int bp_style_set(char *name, bp_style style);
 int bp_style_unset(char *name);
 
 /* Do not use this function directly; use the macros provided for it. */
-int _bp_beep(bp_beeper with, char *file, int32_t line, char *style_name, const void *format, ...);
+int _bp_beep(bp_beeper with, char *file, int32_t line, char *style_name, const wchar_t *format, ...);
 
 #endif /* !BP_SHARED_H */

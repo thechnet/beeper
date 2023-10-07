@@ -1,6 +1,6 @@
 /*
 beeper.c - Beeper
-Modified 2022-10-05
+Modified 2023-10-07
 */
 
 /* Interface headers. */
@@ -204,7 +204,7 @@ int bp_style_unset(char *name)
 Print message. This function should not be used directly; use the macros defined
 in beeper.h.
 */
-int _bp_beep(bp_beeper with, char *file, int32_t line, char *style_name, const void *format, ...)
+int _bp_beep(bp_beeper with, char *file, int32_t line, char *style_name, const wchar_t *format, ...)
 {
   if (!bp_active_beeper)
     return BP_INACTIVE;
@@ -536,17 +536,23 @@ static void bp_print_message_prelude(bp_recipient recipient, bp_theme theme, cha
 /*
 Print the message content.
 */
-static void bp_print_message_content(bp_recipient recipient, const void *format, va_list values)
+static void bp_print_message_content(bp_recipient recipient, const wchar_t *format, va_list values)
 {
   /* Verify that this function runs under the right circumstances. */
   assert(bp_active_beeper);
   assert(format);
   
   /* Print message content. */
-  if (recipient.wide)
-    vfwprintf(recipient.stream, (const wchar_t*)format, values);
-  else
-    vfprintf(recipient.stream, (const char*)format, values);
+  if (recipient.wide) {
+    vfwprintf(recipient.stream, format, values);
+  } else {
+    size_t format_size = wcslen(format) + 1;
+    char *format_narrow = malloc(format_size*sizeof(*format_narrow));
+    if (!format_narrow)
+      return;
+    snprintf(format_narrow, format_size, "%ls", format);
+    vfprintf(recipient.stream, format_narrow, values);
+  }
 }
 
 /*

@@ -1,6 +1,6 @@
 /*
 beeper.h - Beeper
-Modified 2022-10-03
+Modified 2023-10-07
 */
 
 #ifndef BEEPER
@@ -13,7 +13,7 @@ Modified 2022-10-03
 
 /* All-purpose macros. */
 #define beep_with_at(beeper_, file_, line_, style_name_, ...) \
-  _bp_beep((beeper_), (file_), (line_), (#style_name_), (const void*)__VA_ARGS__)
+  _bp_beep((beeper_), (file_), (line_), (#style_name_), L"" __VA_ARGS__)
 #define beep_with(beeper_, style_name_, ...) \
   beep_with_at((beeper_), __FILE__, __LINE__, style_name_, __VA_ARGS__)
 #define beep_at(file_, line_, style_name_, ...) \
@@ -22,11 +22,11 @@ Modified 2022-10-03
   beep_with_at(NULL, __FILE__, __LINE__, style_name_, __VA_ARGS__)
 
 /* Macros for checking runtime values. */
-#define beep_i(i_) beep(debug, (#i_ " = %lld"), (long long int)(i_))
-#define beep_f(f_) beep(debug, (#f_ " = %f"), (f_))
-#define beep_p(p_) beep(debug, (#p_ " = %p"), ((void*)(p_)))
-#define beep_c(c_) beep(debug, (#c_ " = '%c'"), (c_))
-#define beep_s(s_) beep(debug, (#s_ " = \"%s\""), (s_))
-#define beep_ws(ws_) beep(debug, (#ws_ " = \"%ls\""), (ws_))
+#define beep_i(i_) beep(debug, #i_ " = %lld", (long long int)(i_))
+#define beep_f(f_) beep(debug, #f_ " = %f", (f_))
+#define beep_p(p_) beep(debug, #p_ " = %p", ((void*)(p_)))
+#define beep_c(c_) beep(debug, #c_ " = '%c'", (c_))
+#define beep_s(s_) beep(debug, #s_ " = \"%s\"", (s_))
+#define beep_ws(ws_) beep(debug, #ws_ " = \"%ls\"", (ws_))
 
 #endif /* !BEEPER */

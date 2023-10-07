@@ -1,6 +1,6 @@
 /*
 internal.h - Beeper
-Modified 2022-10-05
+Modified 2023-10-07
 */
 
 #ifndef BP_INTERNAL_H
@@ -78,7 +78,7 @@ static bp_theme bp_theme_reset(void);
 static bp_theme *bp_themes_get_empty_slot(void);
 static bp_theme *bp_theme_find_by_name(char *name, bool search_builtin);
 static void bp_print_message_prelude(bp_recipient recipient, bp_theme theme, char *file, int32_t line);
-static void bp_print_message_content(bp_recipient recipient, const void *format, va_list values);
+static void bp_print_message_content(bp_recipient recipient, const wchar_t *format, va_list values);
 static void bp_print_message_postlude(bp_recipient recipient, bp_style style);
 
 #endif /* !BP_INTERNAL_H */
