@@ -29,7 +29,7 @@ endif()
 
 target_compile_options(
   beeper PRIVATE
-  -O3 -Weverything -Wno-reserved-identifier -Wno-padded -Wno-declaration-after-statement -Wno-used-but-marked-unused -Wno-format-nonliteral
+  -O3 -Weverything -Wno-reserved-identifier -Wno-padded -Wno-declaration-after-statement -Wno-used-but-marked-unused -Wno-format-nonliteral -Wno-unsafe-buffer-usage
 )
 
 if(CMAKE_BUILD_TYPE STREQUAL Debug)
